@@ -50,7 +50,6 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<Object> findAllUsers() {
         List<User> users = userRepository.findAll();
-
         return users.stream().map(this::convertEntityToDto)
                 .collect(Collectors.toList());
     }
