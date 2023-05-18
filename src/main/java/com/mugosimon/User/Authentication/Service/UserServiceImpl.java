@@ -1,5 +1,4 @@
 package com.mugosimon.User.Authentication.Service;
-
 import com.mugosimon.User.Authentication.Dto.UserDto;
 import com.mugosimon.User.Authentication.Entity.Role;
 import com.mugosimon.User.Authentication.Entity.User;
@@ -12,12 +11,12 @@ import java.util.stream.Collectors;
 
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
-    private final RoleRepository rolerepository;
+    private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository, RoleRepository rolerepository, PasswordEncoder passwordEncoder) {
+    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
-        this.rolerepository = rolerepository;
+        this.roleRepository = roleRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -26,9 +25,10 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         user.setName(userDto.getFirstName() + " " + userDto.getLastName());
         user.setEmail(userDto.getEmail());
+        //encrypt the password using spring security
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
 
-        Role role = rolerepository.findByName("ROLE_ADMIN");
+        Role role = roleRepository.findByName("ROLE_ADMIN");
         if (role == null) {
             role = checkRoleExist();
         }
@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
     private Role checkRoleExist() {
         Role role = new Role();
         role.setName("ROLE_ADMIN");
-        return rolerepository.save(role);
+        return roleRepository.save(role);
     }
 
     @Override
@@ -48,13 +48,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<Object> findAllUsers() {
+    public List<UserDto> findAllUsers() {
         List<User> users = userRepository.findAll();
         return users.stream().map(this::convertEntityToDto)
                 .collect(Collectors.toList());
     }
 
-    private Object convertEntityToDto(User user) {
+    private UserDto convertEntityToDto(User user) {
         UserDto userDto = new UserDto();
         String[] name = user.getName().split(" ");
         userDto.setFirstName(name[0]);

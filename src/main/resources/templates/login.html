@@ -12,10 +12,8 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" th:href="@{/index}">Registration and Login System</a>
-        <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
-                class="navbar-toggler"
-                data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button">
+        <a class="navbar-brand" th:href="@{/index}">User_Authentication</a>
+        <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -27,7 +25,7 @@
         </div>
     </div>
 </nav>
-<br/><br/>
+<br /><br />
 <div class="container">
     <div class="row">
         <div class="col-md-6 offset-md-3">
@@ -45,10 +43,10 @@
                 </div>
                 <div class="card-body">
                     <form
-                            class="form-horizontal"
                             method="post"
                             role="form"
                             th:action="@{/login}"
+                            class="form-horizontal"
                     >
                         <div class="form-group mb-3">
                             <label class="control-label"> Email</label>
@@ -56,8 +54,8 @@
                                     class="form-control"
                                     id="username"
                                     name="username"
-                                    placeholder="Enter email address"
                                     type="text"
+                                    placeholder="Enter email address"
                             />
                         </div>
 
@@ -67,13 +65,12 @@
                                     class="form-control"
                                     id="password"
                                     name="password"
-                                    placeholder="Enter password"
                                     type="password"
+                                    placeholder="Enter password"
                             />
                         </div>
                         <div class="form-group mb-3">
-                            <button class="btn btn-primary" type="submit">Submit</button>
-                            <br/>
+                            <button class="btn btn-primary" type="submit" >Submit</button>
                             <span> Not registered ?
                                 <a th:href="@{/register}">Register/Signup here</a>
                             </span>

@@ -1,33 +1,26 @@
 package com.mugosimon.User.Authentication.Dto;
 
-import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Entity
-@Data
-@AllArgsConstructor
+@Getter
+@Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class UserDto {
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long Id;
 
-    @Column(nullable = false)
+    private Long id;
+    @NotEmpty
     private String firstName;
-
-    @Column(nullable = false)
+    @NotEmpty
     private String lastName;
-
+    @NotEmpty(message = "Email should not be empty")
     @Email
-    @Column(nullable = false, unique = true)
-    @NotEmpty(message = "email cannot be left empty")
     private String email;
-
-    @Column(nullable = false)
-    @NotEmpty(message = "password cannot be left empty")
+    @NotEmpty(message = "Password should not be empty")
     private String password;
 }
