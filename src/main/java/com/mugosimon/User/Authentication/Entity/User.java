@@ -1,6 +1,7 @@
 package com.mugosimon.User.Authentication.Entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,7 +13,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "user")
+@Table(name = "users")
 public class User {
 
     private static final long serialVersionUID = 1L;
@@ -21,12 +22,15 @@ public class User {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long Id;
 
+    @NotEmpty
     @Column(nullable = false)
     private String name;
 
     @Column(nullable = false, unique = true)
+    @NotEmpty
     private String email;
 
+    @NotEmpty
     @Column(nullable = false)
     private String password;
 

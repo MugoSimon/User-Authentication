@@ -14,7 +14,7 @@ import java.util.stream.Collectors;
 
 public class CustomUserService implements UserDetailsService {
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     public CustomUserService(UserRepository userRepository) {
         this.userRepository = userRepository;
